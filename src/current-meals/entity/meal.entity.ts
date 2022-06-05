@@ -1,7 +1,13 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+    Column,
+    Entity, ManyToMany,
+    PrimaryGeneratedColumn,
+} from "typeorm";
+import {UserEntity} from "../../user/entity/user.entity";
+import {TimeStampEntities} from "../../TimeStamp/TimeStampEntities";
 
 @Entity("meal")
-export class MealEntity {
+export class MealEntity extends TimeStampEntities{
     
     @PrimaryGeneratedColumn()
     id: number;
@@ -24,13 +30,9 @@ export class MealEntity {
     @Column()
     finalRating: number;
 
-    @CreateDateColumn()
-    createdAt: Date;
-    
-    @UpdateDateColumn()
-    updateAt: Date;
-
-    @DeleteDateColumn()
-    deletedAt: Date;
-
+    @ManyToMany(
+        type => UserEntity,
+        user=>user.meals
+    )
+    users : UserEntity;
 }
