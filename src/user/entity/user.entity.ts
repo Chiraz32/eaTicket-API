@@ -1,6 +1,6 @@
 import {
     Column,
-    Entity, JoinColumn, JoinTable, ManyToMany,
+    Entity, JoinColumn, JoinTable, ManyToMany, OneToMany,
     OneToOne,
     PrimaryGeneratedColumn,
 } from "typeorm";
@@ -40,12 +40,17 @@ export class UserEntity extends TimeStampEntities{
     @JoinColumn()
     wallet : WalletEntity
 
-    @ManyToMany(
+    @OneToMany(
         type => TransactionEntity,
-        transaction => transaction.users
+        transaction => transaction.sender
     )
-    @JoinTable()
-    transactions : TransactionEntity[];
+    sendingTransactions : TransactionEntity[];
+
+    @OneToMany(
+        type => TransactionEntity,
+        transaction => transaction.reciever
+    )
+    recievingTransactions : TransactionEntity[];
 
     @ManyToMany(
         type => MealEntity,

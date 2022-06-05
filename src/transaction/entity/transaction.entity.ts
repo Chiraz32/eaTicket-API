@@ -1,7 +1,7 @@
 import {
     Column,
     Entity,
-    ManyToMany,
+    ManyToOne,
     PrimaryGeneratedColumn,
 } from "typeorm";
 import {UserEntity} from "../../user/entity/user.entity";
@@ -16,11 +16,18 @@ export class TransactionEntity extends TimeStampEntities{
     @Column()
     amount: number;
 
-    @ManyToMany(
+    @ManyToOne(
         type => UserEntity,
-        user=>user.transactions
+        user=>user.sendingTransactions
     )
-    users : UserEntity[];
+    sender : UserEntity;
+
+    @ManyToOne(
+        type => UserEntity,
+        user=>user.recievingTransactions
+    )
+    reciever : UserEntity;
+
 
 
 }
