@@ -1,7 +1,14 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+    Column,
+    Entity,
+    ManyToMany,
+    PrimaryGeneratedColumn,
+} from "typeorm";
+import {UserEntity} from "../../user/entity/user.entity";
+import {TimeStampEntities} from "../../TimeStamp/TimeStampEntities";
 
 @Entity("transaction")
-export class TransactionEntity {
+export class TransactionEntity extends TimeStampEntities{
     
     @PrimaryGeneratedColumn()
     id: number;
@@ -9,13 +16,11 @@ export class TransactionEntity {
     @Column()
     amount: number;
 
-    @CreateDateColumn()
-    createdAt: Date;
-    
-    @UpdateDateColumn()
-    updateAt: Date;
+    @ManyToMany(
+        type => UserEntity,
+        user=>user.transactions
+    )
+    users : UserEntity[];
 
-    @DeleteDateColumn()
-    deletedAt: Date;
 
 }

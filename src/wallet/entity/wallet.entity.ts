@@ -1,4 +1,13 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+    Column,
+    CreateDateColumn,
+    DeleteDateColumn,
+    Entity,
+    OneToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from "typeorm";
+import {UserEntity} from "../../user/entity/user.entity";
 
 @Entity("wallet")
 export class WalletEntity {
@@ -17,5 +26,11 @@ export class WalletEntity {
 
     @DeleteDateColumn()
     deletedAt: Date;
+
+    @OneToOne(
+        type => UserEntity,
+        user=> user.wallet
+    )
+    user : UserEntity ;
 
 }

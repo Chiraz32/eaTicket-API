@@ -1,7 +1,17 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+    Column,
+    CreateDateColumn,
+    DeleteDateColumn,
+    Entity,
+    ManyToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from "typeorm";
+import {UserEntity} from "../../user/entity/user.entity";
+import {TimeStampEntities} from "../../TimeStamp/TimeStampEntities";
 
-@Entity("MainOption")
-export class MainOptionEntity {
+@Entity("mainoption")
+export class MainOptionEntity extends TimeStampEntities{
     
     @PrimaryGeneratedColumn()
     id: number;
@@ -12,13 +22,10 @@ export class MainOptionEntity {
     @Column()
     votes: number;
 
-    @CreateDateColumn()
-    createdAt: Date;
-    
-    @UpdateDateColumn()
-    updateAt: Date;
-
-    @DeleteDateColumn()
-    deletedAt: Date;
+    @ManyToMany(
+        type => UserEntity,
+        user=>user.mainOptions
+    )
+    users :UserEntity[];
 
 }

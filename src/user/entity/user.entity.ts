@@ -1,7 +1,18 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
+import {
+    Column,
+    Entity, JoinColumn, JoinTable, ManyToMany,
+    OneToOne,
+    PrimaryGeneratedColumn,
+} from "typeorm";
+import {WalletEntity} from "../../wallet/entity/wallet.entity";
+import {TransactionEntity} from "../../transaction/entity/transaction.entity";
+import {MealEntity} from "../../current-meals/entity/meal.entity";
+import {DessertOptionEntity} from "../../future-entry-meals/entity/dessertOptions.entity";
+import {MainOptionEntity} from "../../future-main-meals/entity/mainOptions.entity";
+import {TimeStampEntities} from "../../TimeStamp/TimeStampEntities";
 
 @Entity("user")
-export class UserEntity {
+export class UserEntity extends TimeStampEntities{
     
     @PrimaryGeneratedColumn()
     id: number;
@@ -22,13 +33,38 @@ export class UserEntity {
     @Column()
     phone: number;
 
-    @CreateDateColumn()
-    createdAt: Date;
-    
-    @UpdateDateColumn()
-    updateAt: Date;
+    @OneToOne(
+        type => WalletEntity,
+        wallet => wallet.user
+    )
+    @JoinColumn()
+    wallet : WalletEntity
 
-    @DeleteDateColumn()
-    deletedAt: Date;
+    @ManyToMany(
+        type => TransactionEntity,
+        transaction => transaction.users
+    )
+    @JoinTable()
+    transactions : TransactionEntity[];
 
+    @ManyToMany(
+        type => MealEntity,
+        meal=>meal.users
+    )
+    @JoinTable()
+    meals : MealEntity[] ;
+
+    @ManyToMany(
+        type=>DessertOptionEntity,
+        dessert=> dessert.users
+    )
+    @JoinTable()
+    dessertOptions: DessertOptionEntity[];
+
+    @ManyToMany(
+        type=>MainOptionEntity,
+        main=> main.users
+    )
+    @JoinTable()
+    mainOptions: MainOptionEntity[];
 }

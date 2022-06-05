@@ -1,7 +1,15 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+    Column,
+    Entity,
+    ManyToMany,
+    PrimaryGeneratedColumn,
 
-@Entity("dessertOption")
-export class DessertOptionEntity {
+} from "typeorm";
+import {UserEntity} from "../../user/entity/user.entity";
+import {TimeStampEntities} from "../../TimeStamp/TimeStampEntities";
+
+@Entity("dessertoption")
+export class DessertOptionEntity extends TimeStampEntities {
     
     @PrimaryGeneratedColumn()
     id: number;
@@ -12,13 +20,9 @@ export class DessertOptionEntity {
     @Column()
     votes: number;
 
-    @CreateDateColumn()
-    createdAt: Date;
-    
-    @UpdateDateColumn()
-    updateAt: Date;
-
-    @DeleteDateColumn()
-    deletedAt: Date;
-
+    @ManyToMany(
+        type => UserEntity,
+        user=>user.dessertOptions
+    )
+    users :UserEntity[];
 }
