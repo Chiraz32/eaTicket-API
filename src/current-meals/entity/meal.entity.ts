@@ -27,7 +27,7 @@ export class MealEntity extends TimeStampEntities{
     @Column()
     ratedBy: number;
 
-    @Column()
+    @Column("decimal", { precision: 8, scale: 2 })
     finalRating: number;
 
     @ManyToMany(

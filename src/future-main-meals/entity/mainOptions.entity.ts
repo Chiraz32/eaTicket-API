@@ -1,11 +1,8 @@
 import {
     Column,
-    CreateDateColumn,
-    DeleteDateColumn,
     Entity,
     ManyToMany,
     PrimaryGeneratedColumn,
-    UpdateDateColumn
 } from "typeorm";
 import {UserEntity} from "../../user/entity/user.entity";
 import {TimeStampEntities} from "../../TimeStamp/TimeStampEntities";

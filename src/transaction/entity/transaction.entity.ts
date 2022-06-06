@@ -7,6 +7,7 @@ import {
 import {UserEntity} from "../../user/entity/user.entity";
 import {TimeStampEntities} from "../../TimeStamp/TimeStampEntities";
 
+
 @Entity("transaction")
 export class TransactionEntity extends TimeStampEntities{
     
@@ -27,6 +28,8 @@ export class TransactionEntity extends TimeStampEntities{
         user=>user.recievingTransactions
     )
     reciever : UserEntity;
+
+
 
 
 

@@ -44,7 +44,7 @@ import { MealEntity } from './current-meals/entity/meal.entity';
         synchronize: true,
       }
   )],
-  controllers: [AppController, UserController, WalletController, FutureMainMealsController, AuthController],
-  providers: [AppService, UserService, CurrentMealsService, FutureEntryMealsService, AuthService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
