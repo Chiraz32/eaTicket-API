@@ -1,4 +1,4 @@
-import {Body, Controller, Post} from '@nestjs/common';
+import {Body, Controller, Post, UsePipes, ValidationPipe} from '@nestjs/common';
 import {TransactionService} from "./transaction.service";
 import {CreateTransactionDto} from "./dto/create-transaction.dto";
 
@@ -6,9 +6,12 @@ import {CreateTransactionDto} from "./dto/create-transaction.dto";
 export class TransactionController {
     constructor(private transactionService : TransactionService) {
     }
+
+    @UsePipes(new ValidationPipe({
+        transform : true,
+    }))
     @Post()
     async createTransaction(@Body() createTransactionDto : CreateTransactionDto){
-        console.log(createTransactionDto)
         return this.transactionService.createTransaction(createTransactionDto)
     }
 }
