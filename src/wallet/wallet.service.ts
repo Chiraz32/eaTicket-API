@@ -42,4 +42,7 @@ export class WalletService {
         }
     }
 
+    async getWallet(id : number){
+        return await this.findWalletByUserId(id)
+    }
 }
