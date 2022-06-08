@@ -1,36 +1,31 @@
 import {
-    Column,
-    CreateDateColumn,
-    DeleteDateColumn,
-    Entity,
-    OneToOne,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn
-} from "typeorm";
-import {UserEntity} from "../../user/entity/user.entity";
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { UserEntity } from '../../user/entity/user.entity';
 
-@Entity("wallet")
+@Entity('wallet')
 export class WalletEntity {
-    
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    balance: number;
+  @Column()
+  balance: number;
 
-    @CreateDateColumn()
-    createdAt: Date;
-    
-    @UpdateDateColumn()
-    updateAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-    @DeleteDateColumn()
-    deletedAt: Date;
+  @UpdateDateColumn()
+  updateAt: Date;
 
-    @OneToOne(
-        type => UserEntity,
-        user=> user.wallet
-    )
-    user : UserEntity ;
+  @DeleteDateColumn()
+  deletedAt: Date;
 
+  @OneToOne((type) => UserEntity, (user) => user.wallet)
+  user: UserEntity;
 }

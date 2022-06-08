@@ -15,24 +15,31 @@ import { DessertOptionEntity } from './future-entry-meals/entity/dessertOptions.
 import { MealEntity } from './current-meals/entity/meal.entity';
 
 @Module({
-  imports: [UserModule, 
-    TransactionModule, 
-    WalletModule, 
-    CurrentMealsModule, 
-    FutureMainMealsModule, 
-    FutureEntryMealsModule, 
-    AuthModule, 
-    TypeOrmModule.forRoot(
-      {
-        type: 'mysql',
-        host: 'localhost',
-        port: 3306,
-        username: 'root',
-        password: '',
-        database: 'eaticket',
-        entities: [UserEntity, WalletEntity, TransactionEntity, MainOptionEntity, DessertOptionEntity, MealEntity],
-        synchronize: true,
-      }
-  )],
+  imports: [
+    UserModule,
+    TransactionModule,
+    WalletModule,
+    CurrentMealsModule,
+    FutureMainMealsModule,
+    FutureEntryMealsModule,
+    AuthModule,
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: '',
+      database: 'eaticket',
+      entities: [
+        UserEntity,
+        WalletEntity,
+        TransactionEntity,
+        MainOptionEntity,
+        DessertOptionEntity,
+        MealEntity,
+      ],
+      synchronize: true,
+    }),
+  ],
 })
 export class AppModule {}

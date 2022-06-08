@@ -1,28 +1,18 @@
-import {
-    Column,
-    Entity,
-    ManyToMany,
-    PrimaryGeneratedColumn,
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from '../../user/entity/user.entity';
+import { TimeStampEntities } from '../../TimeStamp/TimeStampEntities';
 
-} from "typeorm";
-import {UserEntity} from "../../user/entity/user.entity";
-import {TimeStampEntities} from "../../TimeStamp/TimeStampEntities";
-
-@Entity("dessertoption")
+@Entity('dessertoption')
 export class DessertOptionEntity extends TimeStampEntities {
-    
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    votes: number;
+  @Column()
+  votes: number;
 
-    @ManyToMany(
-        type => UserEntity,
-        user=>user.dessertOptions
-    )
-    users :UserEntity[];
+  @ManyToMany((type) => UserEntity, (user) => user.dessertOptions)
+  users: UserEntity[];
 }
