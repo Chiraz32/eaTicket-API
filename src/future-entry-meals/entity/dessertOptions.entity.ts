@@ -2,9 +2,7 @@ import {
     Column,
     Entity,
     ManyToMany,
-    PrimaryGeneratedColumn,
-
-} from "typeorm";
+    PrimaryGeneratedColumn,} from "typeorm";
 import {UserEntity} from "../../user/entity/user.entity";
 import {TimeStampEntities} from "../../TimeStamp/TimeStampEntities";
 
@@ -19,6 +17,7 @@ export class DessertOptionEntity extends TimeStampEntities {
 
     @Column()
     votes: number;
+    
 
     @ManyToMany(
         type => UserEntity,
