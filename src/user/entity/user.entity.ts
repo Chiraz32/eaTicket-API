@@ -33,11 +33,16 @@ export class UserEntity extends TimeStampEntities{
     @Column()
     phone: number;
 
+    @Column()
+    walletId
+
     @OneToOne(
         type => WalletEntity,
         wallet => wallet.user
     )
-    @JoinColumn()
+    @JoinColumn({
+        name: "walletId"
+    })
     wallet : WalletEntity
 
     @OneToMany(
@@ -72,4 +77,5 @@ export class UserEntity extends TimeStampEntities{
     )
     @JoinTable()
     mainOptions: MainOptionEntity[];
+    
 }
