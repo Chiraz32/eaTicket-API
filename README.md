@@ -14,5 +14,7 @@ This repository contains the backend for our project, developed using the NestJS
 ## Project Structure
 
 The codebase is modular, with each module encapsulating its own entities and controllers. This modular approach ensures a clean, maintainable, and scalable code structure. 
+
 Each module represents a distinct feature or component of the project, with its own set of entities and controllers to manage them. The relationships between entities are well-defined, reflecting real-world connections and ensuring data integrity.
+
 Our backend is seamlessly integrated with a MySQL database, enabling robust data management and retrieval. 
